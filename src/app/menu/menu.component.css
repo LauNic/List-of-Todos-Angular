@@ -1,0 +1,12 @@
+.spacer {
+  flex: 1 1 auto;
+  text-align: left;
+}
+.mat-flat-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.mat-icon {
+  margin-left: 5px;
+  margin-right: 5px;
+}

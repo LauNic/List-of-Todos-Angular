@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <mat-icon *ngIf="authenticatedService.isUserLoggedIn()">verified_user</mat-icon>
+    <mat-icon *ngIf="!authenticatedService.isUserLoggedIn()">login</mat-icon>
+    <h2>App</h2>
+      <span class="spacer">
+        <button mat-flat-button color="primary" *ngIf="authenticatedService.isUserLoggedIn()"
+                [routerLink]="['/welcome', authenticatedService.getLoggedInUser()]">Home</button>
+        <button mat-flat-button color="primary" *ngIf="authenticatedService.isUserLoggedIn()"
+                [routerLink]="['/todos', authenticatedService.getLoggedInUser()]">Todos</button>
+      </span>
+      <span>
+        <button mat-flat-button color="primary" *ngIf="!authenticatedService.isUserLoggedIn()"
+                [routerLink]="'/login'">Login</button>
+        <button mat-flat-button color="primary" *ngIf="authenticatedService.isUserLoggedIn()"
+                [routerLink]="'/logout'">Logout</button>
+      </span>
+  </mat-toolbar-row>
+</mat-toolbar>

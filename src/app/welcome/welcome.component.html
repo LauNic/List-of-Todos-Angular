@@ -1,0 +1,23 @@
+<h3>Welcome {{name}}!</h3>
+
+<mat-card>
+  <div class="container">
+    <span class="material-icons">how_to_reg</span>
+  </div>
+  <br>
+  <div class="container">
+    Welcome to our awesome App
+  </div>
+  <br>
+  <div  class="container">
+    You can manage your todo's <a mat-button routerLink="/todos/{{name}}">here</a>
+  </div>
+  <br>
+  <div  class="container">
+    Click for a customized welcome message <button (click)="getWelcomeMessageWithVariable()" mat-button color="primary">here</button>
+  </div>
+  <div  class="container" *ngIf="customWelcomeMessage">
+    <h3>Your customized welcome message</h3>
+    {{customWelcomeMessage}}
+  </div>
+</mat-card>

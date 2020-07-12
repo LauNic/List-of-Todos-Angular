@@ -1,0 +1,39 @@
+<h3>My Todo's</h3>
+<div class="container" style="height: 250px; overflow: auto;">
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
+
+  <mat-table [dataSource]="dataSource" matSort #todosTable>
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.description}} </mat-cell>
+    </ng-container>
+
+    <!-- Target Date Column -->
+    <ng-container matColumnDef="targetDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Target Date </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.targetDate | date}} </mat-cell>
+    </ng-container>
+
+    <!-- Done Column -->
+    <ng-container matColumnDef="done">
+      <mat-header-cell *matHeaderCellDef> Is Completed? </mat-header-cell>
+      <mat-cell *matCellDef="let todo"> {{todo.done}} </mat-cell>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let todo">
+        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteTodo(todo.userName, todo.id)"
+                [routerLink]="['/todos', todo.userName]">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
