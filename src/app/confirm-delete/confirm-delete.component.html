@@ -1,0 +1,21 @@
+<h3>Confirm Delete</h3>
+<div class="container" style="height: 250px; overflow: auto;">
+
+  <mat-card style="width: 90%;" fxFlex>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon style="color:crimson; font-size: 40px;">delete</mat-icon>
+      </div>
+      <mat-card-title>Do you confirm the deletion of the Todo?</mat-card-title>
+      <mat-card-subtitle>Id: {{id}}, Description: {{description}}, userName: {{userName}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+
+        <button mat-raised-button color="basic">Cancel</button>
+        <button mat-raised-button color="primary" class="floatRight">Confirm</button>
+
+    </mat-card-actions>
+  </mat-card>
+
+</div>

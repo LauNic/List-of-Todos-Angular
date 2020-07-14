@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { WelcomeDataService } from '../service/data/welcome-data.service';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 
 @Component({
@@ -15,9 +17,16 @@ export class WelcomeComponent implements OnInit {
 
   // Activated route
   constructor(private route: ActivatedRoute,
-              private dataService: WelcomeDataService) { }
+              private dataService: WelcomeDataService,
+              public authenticatedService: HardcodedAuthenticationService,
+              private router: Router) { }
 
   ngOnInit(): void {
+
+    if(this.route.snapshot.params['name'] != this.authenticatedService.getLoggedInUser())
+    {
+      this.router.navigate(['**']);
+    }
 
     this.name = this.route.snapshot.params['name'];
   }

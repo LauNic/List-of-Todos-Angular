@@ -16,14 +16,20 @@ export class LoginComponent implements OnInit {
   invalidLogin = false;
 
   constructor(private router: Router,
-              private authentication: HardcodedAuthenticationService) { }
+              private authenticatedService: HardcodedAuthenticationService) { }
 
   ngOnInit(): void {
+
+    if(this.authenticatedService.isUserLoggedIn) {
+      // console.log("LoginComponent inside onInit userLoggedIn", sessionStorage.getItem('authenticatedUser'));
+      this.router.navigate(['welcome', sessionStorage.getItem('authenticatedUser')]);
+    }
+
   }
 
   handleLogin() {
 
-    if(this.authentication.authenticate(this.username, this.password)) {
+    if(this.authenticatedService.authenticate(this.username, this.password)) {
       // redirect to welcome page
       this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;

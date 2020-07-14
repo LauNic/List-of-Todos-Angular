@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
-import { TodoDataService } from '../service/data/todo-data.service';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+
+import { TodoDataService } from '../service/data/todo-data.service';
+import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 
 export class Todo {
   constructor(public id: number,
@@ -30,11 +32,24 @@ export class ListTodosComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private todoService: TodoDataService,
-              private router: Router) { }
+              private router: Router,
+              @Inject(DOCUMENT) private document: Document,
+              public authenticatedService: HardcodedAuthenticationService) { }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit(): void {
+
+    if(this.route.snapshot.params['name'] != this.authenticatedService.getLoggedInUser())
+    {
+      this.router.navigate(['**']);
+    }
+
+    if(this.route.snapshot.params['message']) {
+
+      console.log(this.route.snapshot.params['message']);
+      this.successMessage = this.route.snapshot.params['message'];
+    }
 
     this.getAllTodos();
   }
@@ -48,25 +63,18 @@ export class ListTodosComponent implements OnInit {
     );
   }
 
-  deleteTodo(userName: string, id: number) {
-    console.log('deleteTodo: ', userName, id);
+  deleteTodo(userName: string, id: number, description: string) {
 
-    this.todoService.executeDeleteTodo(userName, id).subscribe(
-      response => {
-                    this.successMessage = `The Todo with id ${id} of the user  ${userName} was deleted with success`;
-                  },
-      error => this.handleErrorResponse(error)
-    );
+    console.log('inside method deleteTodo: ', userName, id, description);
+    this.router.navigate(['confirmDelete', userName, id, description]);
 
-    this.todoService.executeGetAllTodos(this.name).subscribe(
-      response => {
-                    // this.dataSource = new MatTableDataSource(response);
-                    // this.dataSource.sort = this.sort;
-                    // this.dataSource.disconnect();
-
-                  },
-      error => this.handleErrorResponse(error)
-    );
+    // this.todoService.executeDeleteTodo(userName, id).subscribe(
+    //   response => {
+    //                 this.document.defaultView.location.replace(this.document.defaultView.location.origin + "/todos/"
+    //                  + this.name + `/The Todo "${description}" of the user  ${userName} was deleted with success`);
+    //               },
+    //   error => this.handleErrorResponse(error)
+    // );
   }
 
   handleErrorResponse(error: any): void {

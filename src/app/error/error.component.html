@@ -1,1 +1,8 @@
-{{errorMessage}}
+<h3>Error Page</h3>
+<div class="container" style="height: 250px; overflow: auto;">
+
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{errorMessage}}
+  </div>
+
+</div>
