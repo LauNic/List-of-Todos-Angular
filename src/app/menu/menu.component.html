@@ -1,7 +1,11 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <mat-icon *ngIf="authenticatedService.isUserLoggedIn()">verified_user</mat-icon>
-    <mat-icon *ngIf="!authenticatedService.isUserLoggedIn()">login</mat-icon>
+    <mat-icon *ngIf="authenticatedService.isUserLoggedIn()">
+      verified_user
+    </mat-icon>
+    <mat-icon *ngIf="!authenticatedService.isUserLoggedIn()">
+      login
+    </mat-icon>
     <h2>App</h2>
       <span class="spacer">
         <button mat-flat-button color="primary" *ngIf="authenticatedService.isUserLoggedIn()"

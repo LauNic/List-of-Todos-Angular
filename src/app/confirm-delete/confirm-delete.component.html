@@ -11,10 +11,13 @@
     </mat-card-header>
 
     <mat-card-actions>
-
-        <button mat-raised-button color="basic">Cancel</button>
-        <button mat-raised-button color="primary" class="floatRight">Confirm</button>
-
+        <button mat-raised-button color="basic" [routerLink]="['/todos', userName]">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary" class="floatRight"
+                (click)="confirmDelete(userName, id, description)">
+          Confirm
+        </button>
     </mat-card-actions>
   </mat-card>
 
