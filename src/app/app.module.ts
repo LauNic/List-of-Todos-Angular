@@ -24,6 +24,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
     MenuComponent,
     FooterComponent,
     LogoutComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

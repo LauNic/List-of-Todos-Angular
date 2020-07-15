@@ -64,17 +64,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   deleteTodo(userName: string, id: number, description: string) {
-
-    // console.log('inside method deleteTodo: ', userName, id, description);
     this.router.navigate(['confirmDelete', userName, id, description]);
-
-    // this.todoService.executeDeleteTodo(userName, id).subscribe(
-    //   response => {
-    //                 this.document.defaultView.location.replace(this.document.defaultView.location.origin + "/todos/"
-    //                  + this.name + `/The Todo "${description}" of the user  ${userName} was deleted with success`);
-    //               },
-    //   error => this.handleErrorResponse(error)
-    // );
   }
 
   handleErrorResponse(error: any): void {

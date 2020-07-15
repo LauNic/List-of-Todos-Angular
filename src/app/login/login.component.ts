@@ -20,8 +20,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.authenticatedService.isUserLoggedIn) {
-      // console.log("LoginComponent inside onInit userLoggedIn", sessionStorage.getItem('authenticatedUser'));
+    console.log("LoginComponent inside onInit isUserLoggedIn", this.authenticatedService.isUserLoggedIn());
+
+    if(this.authenticatedService.isUserLoggedIn()) {
+
+      console.log("LoginComponent inside onInit userLoggedIn", sessionStorage.getItem('authenticatedUser'));
       this.router.navigate(['welcome', sessionStorage.getItem('authenticatedUser')]);
     }
 

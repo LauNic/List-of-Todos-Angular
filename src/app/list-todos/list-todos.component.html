@@ -20,7 +20,10 @@
     <!-- Done Column -->
     <ng-container matColumnDef="done">
       <mat-header-cell *matHeaderCellDef> Is Completed? </mat-header-cell>
-      <mat-cell *matCellDef="let todo"> {{todo.done}} </mat-cell>
+      <mat-cell *matCellDef="let todo" [ngSwitch]="todo.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchCase="false">No</span>
+      </mat-cell>
     </ng-container>
 
     <!-- Actions Column -->

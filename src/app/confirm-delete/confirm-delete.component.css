@@ -1,3 +1,9 @@
 .floatRight {
   float: right;
 }
+.idColumn {
+  flex: 0 0 10%;
+}
+.descriptionColumn {
+  flex: 0 0 35%;
+}
