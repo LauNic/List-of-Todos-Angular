@@ -25,4 +25,14 @@ export class TodoDataService {
     return this.http.get<Todo>(`http://localhost:8080/users/todos/${id}`);
   }
 
+  executeEditTodo(id: number, todo: Todo) {
+
+    return this.http.put<Todo>(`http://localhost:8080/users/todos/${id}`, todo);
+  }
+
+  executeCreateTodo(userName: string, todo: Todo) {
+
+    return this.http.post<any>(`http://localhost:8080/users/${userName}/todos`, todo);
+  }
+
 }

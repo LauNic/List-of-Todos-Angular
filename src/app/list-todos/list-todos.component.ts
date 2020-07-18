@@ -67,6 +67,10 @@ export class ListTodosComponent implements OnInit {
     this.router.navigate(['confirmDelete', userName, id, description]);
   }
 
+  gotoTodo(userName: string, id: number, operation: string) {
+    this.router.navigate(['todo', userName, id, operation]);
+  }
+
   handleErrorResponse(error: any): void {
     this.errorMessage = error.error.message;
   }

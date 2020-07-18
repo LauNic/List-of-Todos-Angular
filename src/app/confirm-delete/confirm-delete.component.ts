@@ -5,7 +5,6 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { TodoDataService } from '../service/data/todo-data.service';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
-import { Todo } from '../list-todos/list-todos.component';
 
 
 @Component({
@@ -37,10 +36,6 @@ export class ConfirmDeleteComponent implements OnInit {
     {
       this.router.navigate(['**']);
     }
-
-    // this.userName = this.route.snapshot.params['userName'];
-    // this.id = this.route.snapshot.params['id'];
-    // this.description = this.route.snapshot.params['description'];
 
     this.getTodo(this.route.snapshot.params['id']);
   }

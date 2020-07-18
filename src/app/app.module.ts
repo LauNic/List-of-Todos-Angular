@@ -12,6 +12,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule}  from '@angular/material/datepicker';
+import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +29,19 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { TodoComponent } from './todo/todo.component';
+import { MomentUtcDateAdapter } from './moment-utc-date-adapter';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY'
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'DD/MM/YYYY',
+    monthYearA11yLabel: 'MM YYYY'
+  }
+};
 
 @NgModule({
   declarations: [
@@ -54,9 +71,26 @@ import { TodoComponent } from './todo/todo.component';
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatSelectModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'ro'
+  },
+  //you can change
+   {
+      provide: DateAdapter,
+      useClass: MomentUtcDateAdapter,
+      deps: [MAT_DATE_LOCALE]
+  }, {
+      provide: MAT_DATE_FORMATS,
+      useValue: MY_FORMATS
+  }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

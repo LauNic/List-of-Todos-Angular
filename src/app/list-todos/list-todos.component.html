@@ -1,5 +1,5 @@
 <h3>My Todo's</h3>
-<div class="container" style="height: 250px; overflow: auto;">
+<div class="container" id="todoContainerDiv">
 
   <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
   <div *ngIf="successMessage" class="alert alert-success">{{successMessage}}</div>
@@ -28,9 +28,11 @@
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
-      <mat-cell *matCellDef="let todo">
-        <button mat-raised-button color="primary">Edit</button>
+      <mat-header-cell class="actions" *matHeaderCellDef> Actions </mat-header-cell>
+      <mat-cell  class="actions" *matCellDef="let todo">
+        <button mat-raised-button color="primary" (click)="gotoTodo(todo.userName,todo.id, 'edit')">Edit</button>
+        <button mat-raised-button color="primary" style="background-color:green;"
+                                                  (click)="gotoTodo(todo.userName,todo.id, 'new')">New</button>
         <button mat-raised-button color="warn" (click)="deleteTodo(todo.userName, todo.id, todo.description)">Delete</button>
       </mat-cell>
     </ng-container>

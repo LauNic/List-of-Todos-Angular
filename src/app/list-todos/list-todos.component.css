@@ -2,3 +2,10 @@
   margin-left: 5px;
   margin-right: 5px;
 }
+
+.idColumn {
+  flex: 0 0 10%;
+}
+.actions {
+  flex: 0 0 35%;
+}
