@@ -3,20 +3,22 @@
 
   <div *ngIf="invalidLogin" class="alert alert-danger">{{errorMessage}}</div>
 
-  <div>
-    <mat-form-field>
-        <mat-label>User Name</mat-label>
-        <input matInput type="text" name="username" [(ngModel)]='username'>
-    </mat-form-field>
-  </div>
+  <mat-card>
+    <div>
+      <mat-form-field>
+          <mat-label>User Name</mat-label>
+          <input matInput type="text" name="username" [(ngModel)]='username'>
+      </mat-form-field>
+    </div>
 
-  <div>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput type="password" name="password" [(ngModel)]='password'>
-    </mat-form-field>
-  </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" name="password" [(ngModel)]='password'>
+      </mat-form-field>
+    </div>
 
-  <button mat-raised-button color="primary" (click)=handleLogin()>Login</button>
+    <button mat-raised-button color="primary" (click)=handleLogin()>Login</button>
+  </mat-card>
 
 </div>
