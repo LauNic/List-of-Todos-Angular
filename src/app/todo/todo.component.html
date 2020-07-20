@@ -2,58 +2,73 @@
 <h3 *ngIf="operation==='new'">New Todo</h3>
 
 <div class="container" id="todoContainerDiv">
+  <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+  <form (ngSubmit)="!todoForm.invalid && save(userName, id, operation)"
+         #todoForm="ngForm">
+    <mat-card fxFlex>
+      <mat-card-header>
+        <div mat-card-avatar>
+          <mat-icon *ngIf="operation==='edit'" style="color:darkblue; font-size: 40px;">
+            assignment
+          </mat-icon>
+          <mat-icon *ngIf="operation==='new'" style="color:darkgreen; font-size: 40px;">
+            fiber_new
+          </mat-icon>
+        </div>
+        <mat-card-title *ngIf="operation==='edit'">
+          Modify Todo with Id {{id}}
+        </mat-card-title>
+        <mat-card-title *ngIf="operation==='new'">
+          Create a New Todo for the user {{userName}}
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="operation==='edit'">
+            "{{description}}" of the userName: {{userName}}
+        </mat-card-subtitle>
+        <mat-card-subtitle *ngIf="operation==='new'">
+            Copy from the Todo "{{description}}"
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
 
-  <mat-card fxFlex>
-    <mat-card-header>
-      <div mat-card-avatar>
-        <mat-icon *ngIf="operation==='edit'" style="color:darkblue; font-size: 40px;">assignment</mat-icon>
-        <mat-icon *ngIf="operation==='new'" style="color:darkgreen; font-size: 40px;">fiber_new</mat-icon>
-      </div>
-      <mat-card-title *ngIf="operation==='edit'">Modify Todo with Id {{id}}</mat-card-title>
-      <mat-card-title *ngIf="operation==='new'">Create a New Todo for the user {{userName}}</mat-card-title>
+        <div class="basic-container">
+          <mat-form-field>
+              <mat-label>Description</mat-label>
+              <input matInput type="text" name="description" minlength="5"
+                              id="description" [(ngModel)]='description' required="required">
+          </mat-form-field>
+        </div>
 
-      <mat-card-subtitle *ngIf="operation==='edit'">"{{description}}" of the userName: {{userName}}</mat-card-subtitle>
-      <mat-card-subtitle *ngIf="operation==='new'">Copy from the Todo "{{description}}"</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
+        <div class="basic-container">
+          <mat-form-field>
+            <mat-label>Target Date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="targetDate"
+                  name="targetDate" id="targetDate" required="required">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
 
-      <div class="basic-container">
-        <mat-form-field>
-            <mat-label>Description</mat-label>
-            <input matInput type="text" name="description" id="description" [(ngModel)]='description'>
-        </mat-form-field>
-      </div>
+        <div class="basic-container">
+          <mat-form-field>
+              <mat-label>Completed</mat-label>
+              <mat-select name="done" id="done" [(ngModel)]="doneSelect" required="required">
+                  <mat-option value="true">Yes</mat-option>
+                  <mat-option value="false">No</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
 
-      <div class="basic-container">
-        <mat-form-field>
-          <mat-label>Target Date</mat-label>
-          <input matInput [matDatepicker]="picker" [(ngModel)]="targetDate"
-                name="targetDate" id="targetDate">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-
-      <div class="basic-container">
-        <mat-form-field>
-            <mat-label>Completed</mat-label>
-            <mat-select name="done" id="done" [(ngModel)]="doneSelect">
-                <mat-option value="true">Yes</mat-option>
-                <mat-option value="false">No</mat-option>
-            </mat-select>
-        </mat-form-field>
-      </div>
-
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button color="basic" [routerLink]="['/todos', userName]">
-          Back
-        </button>
-        <button mat-raised-button color="primary" class="floatRight" (click)="save(userName, id, operation)">
-          <span *ngIf="operation==='edit'">Save</span>
-          <span *ngIf="operation==='new'">Create</span>
-        </button>
-    </mat-card-actions>
-  </mat-card>
+      </mat-card-content>
+      <mat-card-actions>
+          <a mat-raised-button color="basic" [routerLink]="['/todos', userName]">
+            Back
+          </a>
+          <button type="submit" mat-raised-button color="primary" class="floatRight">
+            <span *ngIf="operation==='edit'">Save</span>
+            <span *ngIf="operation==='new'">Create</span>
+          </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
 
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 import { TodoDataService } from '../service/data/todo-data.service';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
@@ -61,7 +62,6 @@ export class TodoComponent implements OnInit {
 
     console.log('Todo.save:', id, operation, this.description, this.targetDate, this.doneSelect, this.done);
     this.done = JSON.parse(this.doneSelect);
-    ;
 
     if(operation==="edit") {
 
