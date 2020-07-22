@@ -16,7 +16,7 @@ import { MatDatepickerModule}  from '@angular/material/datepicker';
 import { MatMomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { TodoComponent } from './todo/todo.component';
 import { MomentUtcDateAdapter } from './moment-utc-date-adapter';
+import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 
 export const MY_FORMATS = {
   parse: {
@@ -76,10 +77,14 @@ export const MY_FORMATS = {
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorBasicAuthService,
+      multi: true
+    },
     {
       provide: MAT_DATE_LOCALE,
-      useValue: 'ro'
+      useValue: 'ro',
   },
   //you can change
    {
