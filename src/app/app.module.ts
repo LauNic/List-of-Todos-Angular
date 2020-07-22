@@ -77,7 +77,8 @@ export const MY_FORMATS = {
     MatSelectModule,
     HttpClientModule
   ],
-  providers: [{
+  providers: [
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorBasicAuthService,
       multi: true

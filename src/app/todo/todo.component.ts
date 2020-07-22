@@ -41,7 +41,7 @@ export class TodoComponent implements OnInit {
 
   getTodo(id: number) {
 
-    console.log('inside Todo method getTodo: ', id);
+    // console.log('inside Todo method getTodo: ', id);
 
     this.todoService.executeGetTodo(id).subscribe(
       response => {
@@ -60,7 +60,7 @@ export class TodoComponent implements OnInit {
 
   save(userName: string, id: number, operation: string) {
 
-    console.log('Todo.save:', id, operation, this.description, this.targetDate, this.doneSelect, this.done);
+    // console.log('Todo.save:', id, operation, this.description, this.targetDate, this.doneSelect, this.done);
     this.done = JSON.parse(this.doneSelect);
 
     if(operation==="edit") {
