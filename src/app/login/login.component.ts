@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   performBasicAuthentication() {
 
-    this.basicAuthService.executeAuthenticationService(this.username, this.password).subscribe(
+    this.basicAuthService.executeJWTAuthenticationService(this.username, this.password).subscribe(
       response => {
                     console.log("response:", JSON.stringify(response));
                     this.router.navigate(['welcome', this.username]);
