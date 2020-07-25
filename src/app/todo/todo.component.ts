@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
 
 import { TodoDataService } from '../service/data/todo-data.service';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
@@ -76,7 +75,7 @@ export class TodoComponent implements OnInit {
     }
     else if(operation==="new") {
 
-      this.todoService.executeCreateTodo(userName, new Todo(id, userName, this.description, this.done, this.targetDate)).subscribe(
+      this.todoService.executeCreateTodo(userName, new Todo(null, userName, this.description, this.done, this.targetDate)).subscribe(
         response => {
                       this.router.navigate(['todos',userName,
                                             `The Todo "${this.description}" of the user  ${userName} was created with success`]);
